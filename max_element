@@ -1,0 +1,53 @@
+#include <stdio.h>
+#define n 100000
+int a[n],m[n];
+int top=-1,t=-1;
+void push(int val){
+    a[++top]=val;
+}
+void pushm(int val){
+    if(t==-1){
+        m[++t]=val;
+    }
+    else if(m[t]>=val){
+        m[++t]=m[t];
+    }
+    else{
+        m[++t]=val;
+    }
+}
+void pop(){
+    top--;
+    t--;
+}
+void max(){
+    int gr;
+    gr=m[t];
+    printf("%d\n",gr);
+}
+int main(){
+    int N,x,choice;
+    int i=0;
+    scanf("%d",&N);
+    while(i!=N){
+        scanf("%d",&choice);
+        switch(choice){
+            case 1:
+                scanf("%d",&x);
+                push(x);
+                pushm(x);
+                break;
+                
+            case 2:
+                pop();
+                break;
+            case 3:
+                max();
+                break;
+            default: 
+                break;
+        }
+        i++;
+    }
+    return 0;
+}
